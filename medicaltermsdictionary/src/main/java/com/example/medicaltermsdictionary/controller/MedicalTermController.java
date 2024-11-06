@@ -1,0 +1,28 @@
+package com.example.medicaltermsdictionary.controller;
+
+import com.example.medicaltermsdictionary.model.MedicalTerm;
+import com.example.medicaltermsdictionary.service.MedicalTermService;
+//import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+//import java.util.Optional;
+
+@RestController
+@CrossOrigin(origins = "*")
+@RequestMapping("/api/medicalterms")
+public class MedicalTermController {
+
+    private final MedicalTermService medicalTermService;
+
+    public MedicalTermController(MedicalTermService medicalTermService) {
+        this.medicalTermService = medicalTermService;
+    }
+
+    @GetMapping
+    public ResponseEntity<List<MedicalTerm>> getAllTerms() {
+        List<MedicalTerm> terms = medicalTermService.getAllTerms();
+        return ResponseEntity.ok(terms);
+    }
+}
