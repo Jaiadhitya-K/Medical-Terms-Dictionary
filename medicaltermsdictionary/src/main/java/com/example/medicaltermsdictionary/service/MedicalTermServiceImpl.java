@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-//import java.util.Optional;
+import java.util.Optional;
 //import java.util.stream.Collectors;
 
 @Service
@@ -22,5 +22,15 @@ public class MedicalTermServiceImpl implements MedicalTermService {
     @Override
     public List<MedicalTerm> getAllTerms() {
         return medicalTermRepository.findAll();
+    }
+
+    @Override
+    public Optional<MedicalTerm> getTermByName(String term) {
+        return medicalTermRepository.findByTerm(term);
+    }
+
+    @Override
+    public Optional<MedicalTerm> getTermById(Long id) {
+        return medicalTermRepository.findById(id);
     }
 }
