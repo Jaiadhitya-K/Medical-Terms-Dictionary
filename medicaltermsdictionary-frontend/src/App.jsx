@@ -1,35 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Home from './pages/Home';
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => (
+  <Router>
+    <div className="min-h-screen flex flex-col">
+      <header className="bg-teal-600 text-white shadow p-4">
+        <nav className="container mx-auto flex justify-between items-center">
+          <Link to="/" className="flex items-center gap-2">
+            <img src="/src/assets/logo.png" alt="Medical Terms Dictionary Logo" className="h-14 w-15" />
+          </Link>
+          <div>
+            <Link to="/" className="px-4 hover:text-gray-200">Home</Link>
+            <Link to="/favorites" className="px-4 hover:text-gray-200">Favorites</Link>
+          </div>
+        </nav>
+      </header>
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+      <main className="container mx-auto flex-grow py-8">
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </main>
 
-export default App
+      <footer className="fixed-footer bg-gray-100 text-gray-700 py-4 text-center shadow-inner">
+        <p className="text-lg">© 2024 MEDTERMS - Medical Terms Dictionary. All rights reserved.</p>
+      </footer>
+    </div>
+  </Router>
+);
+
+export default App;

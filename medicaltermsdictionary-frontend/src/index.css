@@ -2,3 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(45deg, #f8f9fa, #e0f7fa);
+  background-size: 400% 400%;
+  animation: gradientBackground 10s ease infinite;
+  min-height: 100vh;
+}
+
+@keyframes gradientBackground {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.container {
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.fixed-footer {
+  flex-shrink: 0;
+}
+
+.search-input {
+  transition: box-shadow 0.3s ease;
+}
+.search-input:hover, .search-input:focus {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
