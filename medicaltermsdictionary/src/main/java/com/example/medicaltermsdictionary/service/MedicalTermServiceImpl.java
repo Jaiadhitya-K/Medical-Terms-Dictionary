@@ -1,15 +1,22 @@
 package com.example.medicaltermsdictionary.service;
 
+import com.example.medicaltermsdictionary.exception.TermNotFoundException;
+import com.example.medicaltermsdictionary.exception.DuplicateFavoriteException;
 import com.example.medicaltermsdictionary.model.FavoriteTerm;
 import com.example.medicaltermsdictionary.model.MedicalTerm;
-import com.example.medicaltermsdictionary.repository.MedicalTermRepository;
 import com.example.medicaltermsdictionary.repository.FavoriteTermRepository;
+import com.example.medicaltermsdictionary.repository.MedicalTermRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import com.example.medicaltermsdictionary.constant.ErrorConstants;
 
+/**
+ * Service implementation for managing medical terms.
+ */
 @Service
 @Transactional
 public class MedicalTermServiceImpl implements MedicalTermService {
@@ -65,16 +72,18 @@ public class MedicalTermServiceImpl implements MedicalTermService {
 
     @Override
     public void addToFavorites(Long termId) {
-        medicalTermRepository.findById(termId).ifPresent(medicalTerm -> {
-            favoriteTermRepository.findByMedicalTermId(termId).ifPresentOrElse(
-                    _ -> {
-                    },
-                    () -> favoriteTermRepository.save(new FavoriteTerm(null, medicalTerm)));
+        MedicalTerm medicalTerm = medicalTermRepository.findById(termId)
+                .orElseThrow(() -> new TermNotFoundException(ErrorConstants.TERM_NOT_FOUND));
+        favoriteTermRepository.findByMedicalTermId(termId).ifPresent(_ -> {
+            throw new DuplicateFavoriteException(ErrorConstants.DUPLICATE_FAVORITE);
         });
+        favoriteTermRepository.save(new FavoriteTerm(null, medicalTerm));
     }
 
     @Override
     public void removeFromFavorites(Long termId) {
-        favoriteTermRepository.findByMedicalTermId(termId).ifPresent(favoriteTermRepository::delete);
+        FavoriteTerm favorite = favoriteTermRepository.findByMedicalTermId(termId)
+                .orElseThrow(() -> new TermNotFoundException(ErrorConstants.TERM_NOT_FOUND));
+        favoriteTermRepository.delete(favorite);
     }
 }
