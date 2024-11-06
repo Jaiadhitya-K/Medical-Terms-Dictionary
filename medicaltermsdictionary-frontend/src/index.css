@@ -40,3 +40,27 @@ body {
   transform: scale(1.02);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
+
+.button-primary {
+  background-color: #00bfa5;
+  color: #ffffff;
+  padding: 0.7rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+.button-primary:hover {
+  background-color: #008e75;
+}
+
+.button-remove {
+  background-color: #e53935;
+  color: #ffffff;
+  padding: 0.7rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+.button-remove:hover {
+  background-color: #b71c1c;
+}
