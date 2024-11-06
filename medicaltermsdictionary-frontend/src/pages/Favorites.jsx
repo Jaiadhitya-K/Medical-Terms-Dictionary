@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { fetchFavorites } from '../services/api';
 import TermCard from '../components/TermCard';
 
 const Favorites = () => {
@@ -7,6 +8,7 @@ const Favorites = () => {
   useEffect(() => {
     fetchFavorites().then(res => setFavorites(res.data));
   }, []);
+
 
 
   return (
