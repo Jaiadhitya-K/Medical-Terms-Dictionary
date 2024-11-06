@@ -15,10 +15,10 @@ public interface MedicalTermService {
 
     List<MedicalTerm> getRelatedTerms(String term);
 
-    // List<MedicalTerm> getFavoriteTerms();
+    List<MedicalTerm> getFavoriteTerms();
 
-    // void addToFavorites(Long termId);
+    void addToFavorites(Long termId);
 
-    // void removeFromFavorites(Long termId);
+    void removeFromFavorites(Long termId);
 
 }

@@ -54,4 +54,22 @@ public class MedicalTermController {
         return ResponseEntity.ok(relatedTerms);
     }
 
+    @GetMapping("/favorites")
+    public ResponseEntity<List<MedicalTerm>> getFavoriteTerms() {
+        List<MedicalTerm> favoriteTerms = medicalTermService.getFavoriteTerms();
+        return ResponseEntity.ok(favoriteTerms);
+    }
+
+    @PostMapping("/{id}/favorites")
+    public ResponseEntity<Void> addFavorite(@PathVariable Long id) {
+        medicalTermService.addToFavorites(id);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @DeleteMapping("/{id}/favorites")
+    public ResponseEntity<Void> removeFavorite(@PathVariable Long id) {
+        medicalTermService.removeFromFavorites(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }
