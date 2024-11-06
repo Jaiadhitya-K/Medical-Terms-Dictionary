@@ -11,4 +11,6 @@ public interface MedicalTermService {
 
     Optional<MedicalTerm> getTermById(Long id);
 
+    List<MedicalTerm> searchTerms(String term);
+
 }

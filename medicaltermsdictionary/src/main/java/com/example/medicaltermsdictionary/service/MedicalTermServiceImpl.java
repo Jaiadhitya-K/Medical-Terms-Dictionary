@@ -33,4 +33,9 @@ public class MedicalTermServiceImpl implements MedicalTermService {
     public Optional<MedicalTerm> getTermById(Long id) {
         return medicalTermRepository.findById(id);
     }
+
+    @Override
+    public List<MedicalTerm> searchTerms(String term) {
+        return medicalTermRepository.findByTermContainingIgnoreCase(term);
+    }
 }

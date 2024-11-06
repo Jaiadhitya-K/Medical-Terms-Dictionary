@@ -41,4 +41,10 @@ public class MedicalTermController {
         return medicalTerm.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<MedicalTerm>> searchTerms(@RequestParam String query) {
+        List<MedicalTerm> terms = medicalTermService.searchTerms(query);
+        return ResponseEntity.ok(terms);
+    }
 }
