@@ -13,4 +13,12 @@ public interface MedicalTermService {
 
     List<MedicalTerm> searchTerms(String term);
 
+    List<MedicalTerm> getRelatedTerms(String term);
+
+    // List<MedicalTerm> getFavoriteTerms();
+
+    // void addToFavorites(Long termId);
+
+    // void removeFromFavorites(Long termId);
+
 }

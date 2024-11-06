@@ -14,4 +14,5 @@ public interface MedicalTermRepository extends JpaRepository<MedicalTerm, Long> 
 
     List<MedicalTerm> findByTermContainingIgnoreCase(String term);
 
+    List<MedicalTerm> findByDefinitionContainingIgnoreCase(String keyword);
 }

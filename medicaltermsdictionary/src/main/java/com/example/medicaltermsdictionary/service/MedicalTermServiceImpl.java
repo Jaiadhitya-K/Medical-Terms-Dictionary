@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 //import java.util.stream.Collectors;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -37,5 +38,18 @@ public class MedicalTermServiceImpl implements MedicalTermService {
     @Override
     public List<MedicalTerm> searchTerms(String term) {
         return medicalTermRepository.findByTermContainingIgnoreCase(term);
+    }
+
+    @Override
+    public List<MedicalTerm> getRelatedTerms(String term) {
+        return medicalTermRepository.findByTerm(term)
+                .map(MedicalTerm::getDefinition)
+                .stream()
+                .flatMap(def -> List.of(def.split("\\s+")).stream())
+                .filter(keyword -> keyword.length() > 3)
+                .distinct()
+                .flatMap(keyword -> medicalTermRepository.findByDefinitionContainingIgnoreCase(keyword).stream())
+                .distinct()
+                .collect(Collectors.toList());
     }
 }

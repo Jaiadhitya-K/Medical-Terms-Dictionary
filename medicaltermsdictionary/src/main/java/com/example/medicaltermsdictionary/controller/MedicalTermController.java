@@ -47,4 +47,11 @@ public class MedicalTermController {
         List<MedicalTerm> terms = medicalTermService.searchTerms(query);
         return ResponseEntity.ok(terms);
     }
+
+    @GetMapping("/{term}/related")
+    public ResponseEntity<List<MedicalTerm>> getRelatedTerms(@PathVariable String term) {
+        List<MedicalTerm> relatedTerms = medicalTermService.getRelatedTerms(term);
+        return ResponseEntity.ok(relatedTerms);
+    }
+
 }
