@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
+import TermDetails from './pages/TermDetails';
+import Favorites from './pages/Favorites';
 
 const App = () => (
   <Router>
@@ -20,6 +22,8 @@ const App = () => (
       <main className="container mx-auto flex-grow py-8">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/terms/:term" element={<TermDetails />} />
+          <Route path="/favorites" element={<Favorites />} />
         </Routes>
       </main>
 
