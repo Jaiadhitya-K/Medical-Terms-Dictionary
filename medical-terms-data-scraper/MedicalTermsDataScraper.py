@@ -1,10 +1,33 @@
+# This script scrapes medical terms and their definitions from the Harvard Medical School website
+# and stores them in a PostgreSQL database.
+#
+# Prerequisites:
+# 1. Set up PostgreSQL on your local machine.
+# 2. Install the required Python packages by running:
+#    pip install requests beautifulsoup4 sqlalchemy psycopg2-binary
+# 3. Replace the USERNAME and PASSWORD variables with your PostgreSQL credentials.
+
 import requests
 from bs4 import BeautifulSoup
-from sqlalchemy import create_engine, Column, String, Integer
+from sqlalchemy import create_engine, Column, String, Integer, text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-DATABASE_URL = "postgresql://postgres:lollollol@localhost/medical_terms_db"
+# Database credentials (replace with your own)
+USERNAME = "postgres"
+PASSWORD = "lollollol"  # Replace with your PostgreSQL password
+DATABASE_NAME = "medical_terms_db"
+
+# Connect to the PostgreSQL server to create the database (without selecting a specific database)
+SERVER_URL = f"postgresql://{USERNAME}:{PASSWORD}@localhost/postgres"
+engine = create_engine(SERVER_URL, echo=True)
+
+# Create the database if it doesn't already exist
+with engine.connect().execution_options(isolation_level="AUTOCOMMIT") as connection:
+    connection.execute(text(f"CREATE DATABASE {DATABASE_NAME}"))
+
+# Switch to the newly created database for further operations
+DATABASE_URL = f"postgresql://{USERNAME}:{PASSWORD}@localhost/{DATABASE_NAME}"
 engine = create_engine(DATABASE_URL)
 Base = declarative_base()
 
@@ -105,3 +128,7 @@ for url in urls:
 terms = session.query(MedicalTerm).all()
 for term in terms:
     print(f"Term: {term.term}\nDefinition: {term.definition}\n")
+
+# Close the session
+session.close()
+print("Database setup and data population complete!")
