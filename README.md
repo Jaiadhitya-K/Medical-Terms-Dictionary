@@ -168,8 +168,10 @@ You should now be able to access the full application with both frontend and bac
 Located in `medical-terms-data-scraper`
 - `MedicalTermsDataParser.py`: Scrapes and populates the PostgreSQL database with medical terms.
 
-##Additional Notes
+## Additional Notes
 - Troubleshooting: If you encounter issues connecting to PostgreSQL, ensure the `application.properties` file in the backend contains the correct credentials and that PostgreSQL is running.
 - Data Validation: Ensure the scraper successfully populates data by querying the database to check if medical terms are available.
 - Customizing Ports: If the default ports (8080 for backend, 5173 for frontend) are unavailable, they can be changed in the Spring Boot `application.properties` file and the Vite config, respectively.
 - Frontend Configuration: You can update the API endpoint URLs in `constants/api.js` if needed.
+
+# Thank You
