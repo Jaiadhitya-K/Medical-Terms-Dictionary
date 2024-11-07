@@ -115,7 +115,7 @@ Verify installation by running:
     npm -v
   ```
   
-####Step 2: Install Vite and Dependencies
+#### Step 2: Install Vite and Dependencies
 Inside the frontend directory (`medicaltermsdictionary-frontend`), install dependencies:
   ```bash
     npm install
@@ -125,6 +125,7 @@ Inside the frontend directory (`medicaltermsdictionary-frontend`), install depen
   ```
 
 ## Running the Project
+
 #### Step 1: Start the Backend (Spring Boot)
 Navigate to the backend directory:
   ```bash
@@ -137,6 +138,7 @@ Run the application:
 The backend should start on "http://localhost:8080".
 
 #### Step 2: Start the Frontend (React Vite)
+
 Navigate to the frontend directory:
   ```bash
     cd medicaltermsdictionary-frontend
@@ -146,9 +148,10 @@ Run the application:
     npm run dev
   ```
 The frontend will start on "http://localhost:5173".
+
 You should now be able to access the full application with both frontend and backend running locally.
 
-# Project Structure
+## Project Structure
 ## Backend (Spring Boot)
 - Controller: Handles HTTP requests.
 - Service: Business logic for handling data.
@@ -165,7 +168,7 @@ You should now be able to access the full application with both frontend and bac
 Located in `medical-terms-data-scraper`
 - `MedicalTermsDataParser.py`: Scrapes and populates the PostgreSQL database with medical terms.
 
-#Additional Notes
+##Additional Notes
 - Troubleshooting: If you encounter issues connecting to PostgreSQL, ensure the `application.properties` file in the backend contains the correct credentials and that PostgreSQL is running.
 - Data Validation: Ensure the scraper successfully populates data by querying the database to check if medical terms are available.
 - Customizing Ports: If the default ports (8080 for backend, 5173 for frontend) are unavailable, they can be changed in the Spring Boot `application.properties` file and the Vite config, respectively.
