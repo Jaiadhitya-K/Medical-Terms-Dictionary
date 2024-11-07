@@ -36,6 +36,7 @@ The project uses PostgreSQL to store medical terms data. Follow these instructio
 
 #### Step 1: Install PostgreSQL
 - **Windows**: Download PostgreSQL from the official website and follow the installation instructions.
+  https://www.postgresql.org/
 - **Mac**: You can install PostgreSQL using Homebrew with the command:
     ```bash
     brew install postgresql
@@ -83,6 +84,7 @@ Ensure JDK 11+ is installed on your system.
 
 #### Step 2: Install Maven
 - **Windows**: Download Maven from the Apache website and follow the installation instructions.
+  https://maven.apache.org/
 - **Mac**: Install via Homebrew:
     ```bash
     brew install maven
